@@ -1,0 +1,29 @@
+package ad02;
+
+
+//Crea un programa que pida por consola la ruta de un directorio e imprima por pantalla solo los archivos que hay, 
+//sin tener en cuenta los directorios. Para cada fichero la información que se tiene que msotrar es la siguiente: 
+//Nombre, ruta completa y tamaño del archivo.
+
+import java.io.File;
+import java.util.Scanner;
+public class AD02 {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduzca la ruta del directorio");
+        String rutaDirectorio = sc.nextLine();
+        
+        File directorio = new File(rutaDirectorio);
+        String[] archivos = directorio.list();
+        
+        System.out.printf("Ficheros del directorio %s : %d %n",rutaDirectorio,archivos.length);
+        
+        for(int i=0; i<archivos.length;i++){
+            File archivoAux = new File(rutaDirectorio,archivos[i]);
+            if(archivoAux.isFile()) 
+                System.out.printf("Nombre de archivo: %s %n", archivoAux.getName() + "\nRuta completa: " + archivoAux.getAbsolutePath() + "\nTamaño del archivo: " + archivoAux.length() + " bytes");
+        }
+    }   
+}
